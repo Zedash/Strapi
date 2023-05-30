@@ -1,0 +1,28 @@
+{
+  "name": "vercel",
+  "version": "0.1.0",
+  "description": "This is the description of the plugin.",
+  "strapi": {
+    "name": "Vercel",
+    "description": "Deploy to Vercel and watch last deployments.",
+    "kind": "plugin"
+  },
+  "dependencies": {},
+  "author": {
+    "name": "Souhaire Fernane",
+    "email": "z.fernane@gmail.com",
+    "url": "https://github.com/Zedash"
+  },
+  "maintainers": [
+    {
+      "name": "Souhaire Fernane",
+      "email": "z.fernane@gmail.com",
+      "url": "https://github.com/Zedash"
+    }
+  ],
+  "engines": {
+    "node": ">=12.x. <=16.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

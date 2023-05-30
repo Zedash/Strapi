@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_elements_search_boxes",
+  "info": {
+    "name": "SearchBox",
+    "icon": "search",
+    "displayName": "SearchBox",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "placeholder": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary"
+      ],
+      "required": true,
+      "default": "primary"
+    },
+    "cleanButton": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

@@ -1,0 +1,71 @@
+name: CI/CD Pipeline - Production
+
+# Actions only gets triggered when there is a new release published
+# or manual trigger on the workflow.
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1 - Retrieve source code
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Step 2
+      - name: Prepare .env
+        run: echo ${{ secrets.STRAPI_PROD_ENV }} | base64 -d >> .env
+      # Step 3
+      - name: Use Node.js v14.18.1
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+          cache: "yarn"
+      # Step 4
+      - name: Build admin panel for production
+        run: yarn && NODE_ENV=production yarn build
+      # Step 5
+      - name: Compress project
+        run: zip -r strapi-prod-${{ github.sha }}.zip .
+      # Step 6 - Caching build to re-use files between jobs or workflows
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: strapi-prod-build
+          path: strapi-prod-${{ github.sha }}.zip
+          retention-days: 1
+
+  deployment:
+    runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: https://cms.your-domain.com
+    needs: [test]
+    steps:
+      # Step 1
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+      # Step 2
+      - name: Restore build folder
+        uses: actions/download-artifact@v2
+        with:
+          name: strapi-prod-build
+      # Step 3
+      - name: Upload project to AWS S3
+        run: aws s3 cp strapi-prod-${{ github.sha }}.zip s3://${{ secrets.AWS_DEPLOY_BUCKET }}
+      # Step 4
+      - name: Deploy project through AWS CodeDeploy to EC2
+        run: |
+          aws deploy create-deployment \
+            --application-name ${{ secrets.STRAPI_AWS_APPNAME }} \
+            --deployment-group-name ${{ secrets.STRAPI_AWS_STAGE_PROD }} \
+            --deployment-config-name CodeDeployDefault.OneAtATime \
+            --s3-location bucket=${{ secrets.AWS_DEPLOY_BUCKET }},key=strapi-prod-${{ github.sha }}.zip,bundleType=zip

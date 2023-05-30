@@ -1,0 +1,26 @@
+{
+  //"parser": "babel-eslint",
+  "extends": ["eslint:recommended", "prettier"],
+  "env": {
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "globals": {
+    "strapi": true
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "eqeqeq": "error",
+    "no-console": "warn",
+    "prettier/prettier": "error"
+  }
+}

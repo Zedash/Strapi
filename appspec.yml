@@ -1,0 +1,27 @@
+# Do not change this value. It is required. Currently, the only allowed value is 0.0.
+version: 0.0
+# This section specifies the operating system value of the instance to which you deploy. It is required.
+# The following values can be specified:
+# linux – The instance is an Amazon Linux, Ubuntu Server, or RHEL instance.
+# windows – The instance is a Windows Server instance.
+os: linux
+# This section specifies the names of files that should be copied to the instance during the deployment's Install event.
+files:
+  - source: .
+    destination: /var/www/projects/strapi
+# During lifecycle events, run the commands in the script specified in "location".
+hooks:
+  BeforeInstall:
+    - location: scripts/clean.sh
+      timeout: 300
+  AfterInstall:
+    - location: scripts/chown.sh
+      timeout: 300
+      runas: root
+    - location: scripts/install.sh
+      timeout: 300
+      runas: ubuntu
+  ApplicationStart:
+    - location: scripts/run.sh
+      timeout: 300
+      runas: ubuntu

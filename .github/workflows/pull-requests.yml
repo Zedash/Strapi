@@ -1,0 +1,37 @@
+name: Danger PR Policy Pipeline
+
+# Actions only gets triggered when there is a pull request against those branches
+# or a manual trigger on the workflow.
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
+      - develop
+      - release/**
+  workflow_dispatch:
+
+jobs:
+  DangerJS:
+    runs-on: ubuntu-latest
+    steps:
+      # Retrieve source code from main branch
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      # Setup project environement
+      - name: Prepare .env file
+        run: echo ${{ secrets.STRAPI_PROD_ENV }} | base64 -d >> .env.local
+      - name: Use Node.js v14
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+          cache: "yarn"
+      # Install dependancies and build project
+      - name: Build project
+        run: yarn && NODE_ENV=production yarn build
+      # Check if Pull request policy pass
+      - name: Check PR Policy
+        run: yarn danger ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}

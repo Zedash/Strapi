@@ -1,0 +1,53 @@
+# 📍JIRA Ticket
+
+Provide a link to the ticket.
+
+## 🎓Description
+
+Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
+
+`Fixes # (issue)`
+
+## 🚀Type of change
+
+What types of changes does your code introduce? _Put an `x` in the boxes that apply._
+
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] Hotfix (same as Bug fix but that need to be live in no time)
+- [ ] Feature (non-breaking change which adds functionality)
+- [ ] Code style update (formatting, renaming)
+- [ ] Refactoring (no functional changes, no api changes)
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] This change requires a documentation update
+
+## 🔨How Has This Been Tested?
+
+Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration.
+
+**Test Flow A:**
+
+- _Got to page..._
+- _Fill in the form..._
+- _Click button..._
+- _Then you should see page..._
+
+**Test Configuration**:
+
+- Operating System: _Windows 11_
+- Browser(s): _Chrome_
+- Platform: _Desktop_
+- Target Platform: _Smartphones_
+- Node version: _14.18.1_
+
+## 📋Checklist
+
+The aviation industry uses checklists to **ensure correct process and reduce accidents**. I don’t see why software developers can’t use them too! Before submitting / approving a PR, we want to be sure that developers are applying a minimum level of rigor.
+
+- [ ] My code follows the style guidelines of this project
+- [ ] I have performed a self-review of my own code
+- [ ] I have commented my code, particularly in hard-to-understand areas
+- [ ] I have made corresponding changes to the documentation
+- [ ] My changes generate no new warnings
+- [ ] I have added tests that prove my fix is effective or that my feature works
+- [ ] New and existing unit tests pass locally with my changes
+- [ ] I have added my changes to the `CHANGELOG.md` file

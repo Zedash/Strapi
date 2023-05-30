@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_sections_middle_sections",
+  "info": {
+    "name": "MiddleSection",
+    "icon": "bookmark",
+    "description": "",
+    "displayName": "MiddleSection"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 12,
+      "unique": false
+    },
+    "path": {
+      "type": "string",
+      "required": true,
+      "default": "/buy"
+    },
+    "carousel": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.carousel",
+      "required": true
+    }
+  }
+}

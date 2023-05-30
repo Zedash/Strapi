@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_meta_metadata",
+  "info": {
+    "name": "Metadata",
+    "icon": "robot",
+    "displayName": "Metadata",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "metaTitle": {
+      "type": "string",
+      "required": true
+    },
+    "metaDescription": {
+      "type": "text",
+      "required": true
+    },
+    "twitterCardType": {
+      "type": "enumeration",
+      "enum": [
+        "summary",
+        "summary_large_image",
+        "app",
+        "player"
+      ],
+      "default": "summary"
+    },
+    "twitterUsername": {
+      "type": "string"
+    },
+    "shareImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "metaTitleSuffix": {
+      "type": "string",
+      "default": "Headless CMS",
+      "required": false
+    }
+  }
+}

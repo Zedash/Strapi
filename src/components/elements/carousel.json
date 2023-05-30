@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_elements_carousels",
+  "info": {
+    "name": "Carousel",
+    "icon": "eye",
+    "displayName": "Carousel",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "wanted",
+        "social",
+        "articles",
+        "press",
+        "sales"
+      ],
+      "required": true
+    },
+    "slidesToShow": {
+      "type": "integer",
+      "required": true,
+      "default": 4
+    },
+    "infinite": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "dots": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}
